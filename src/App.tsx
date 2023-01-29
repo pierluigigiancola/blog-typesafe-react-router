@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import RoutePaths from './router'
 import HSL from "./HSL"
 import Layout from "./Layout"
 import RBG from "./RGB"
@@ -9,11 +10,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route
-            path="/rgb/:red/:green/:blue"
+            path={RoutePaths.RGB}
             element={<RBG />}
           />
           <Route
-            path="/hsl/:hue/:saturation/:lightness"
+            path={RoutePaths.HSL}
             element={<HSL />}
           />
         </Route>
