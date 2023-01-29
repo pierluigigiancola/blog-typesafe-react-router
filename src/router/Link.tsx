@@ -1,10 +1,22 @@
 import { Link as ReactRouterLink } from "react-router-dom";
-import { RouteLabels } from "./Routes";
+import Routes, { RouteLabels } from "./Routes";
 
-const Link = <To extends RouteLabels>(
-  props: { to: To } & Omit<React.ComponentProps<typeof ReactRouterLink>, "to">
-) => {
-  return <ReactRouterLink {...props} />;
+function replaceParams(path: string, params: Record<string, string>) {
+  return Object.keys(params).reduce(
+    (acc, key) => acc.replace(`:${key}`, params[key]),
+    path
+  );
+}
+
+const Link = ({
+  to,
+  params = {},
+  ...props
+}: {
+  to: RouteLabels;
+  params?: Record<string, string>;
+} & Omit<React.ComponentProps<typeof ReactRouterLink>, "to">) => {
+  return <ReactRouterLink to={replaceParams(Routes[to], params)} {...props} />;
 };
 
 export default Link;
