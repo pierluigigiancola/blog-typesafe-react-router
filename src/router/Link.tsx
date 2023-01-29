@@ -1,12 +1,10 @@
-import { Link as ReactRouterLink } from 'react-router-dom';
-import { RouteLabels } from './Routes';
+import { Link as ReactRouterLink } from "react-router-dom";
+import { RouteLabels } from "./Routes";
 
-const Link = <To extends RouteLabels>(props:
-    { to: To } & Omit<React.ComponentProps<typeof ReactRouterLink>, 'to'>
+const Link = <To extends RouteLabels>(
+  props: { to: To } & Omit<React.ComponentProps<typeof ReactRouterLink>, "to">
 ) => {
-    return (
-        <ReactRouterLink {...props} />
-    );
+  return <ReactRouterLink {...props} />;
 };
 
 export default Link;
