@@ -1,3 +1,4 @@
 import Routes from './Routes';
+import Link from './Link';
 
-export default Routes;
+export { Routes, Link };

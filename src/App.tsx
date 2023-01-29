@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import RoutePaths from './router'
+import { Routes as RoutePaths } from './router'
 import HSL from "./HSL"
 import Layout from "./Layout"
 import RBG from "./RGB"
