@@ -1,5 +1,5 @@
 import { Link as ReactRouterLink } from "react-router-dom";
-import Routes, { RouteLabels } from "./Routes";
+import Routes, { RouteLabels, RoutesProperty } from "./Routes";
 
 function replaceParams(path: string, params: Record<string, string>) {
   return Object.keys(params).reduce(
@@ -8,14 +8,16 @@ function replaceParams(path: string, params: Record<string, string>) {
   );
 }
 
-const Link = ({
+type LinkProps<T extends RouteLabels> = {
+  to: T;
+  params: RoutesProperty[T]["params"];
+} & Omit<React.ComponentProps<typeof ReactRouterLink>, "to">;
+
+const Link = <To extends RouteLabels>({
   to,
-  params = {},
+  params,
   ...props
-}: {
-  to: RouteLabels;
-  params?: Record<string, string>;
-} & Omit<React.ComponentProps<typeof ReactRouterLink>, "to">) => {
+}: LinkProps<To>) => {
   return <ReactRouterLink to={replaceParams(Routes[to], params)} {...props} />;
 };
 
